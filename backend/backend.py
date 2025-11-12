@@ -3,22 +3,14 @@ import uvicorn
 from Schema import *
 from fastapi import FastAPI, HTTPException, Query , Body, Request
 from typing import Optional
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 connection = pymysql.connect(
         host='127.0.0.1',
-        port=3306,
+        port=3307,
         user='root',
-        password='0855566027',
+        password='strong_password',
         database='libmanagement',
     )
 
@@ -58,7 +50,7 @@ def auth(acc: str, pwd: str) -> bool:
         print(f"Lỗi xác thực: {e}")
         return False
 
-def get_reader_id(acc: str, pwd: str) -> Optional[int]:
+def get_reader_id(acc: str, pwd: str) -> Optional[str]:
     try:
         with connection.cursor() as cursor:
             sql = "SELECT ReaderID FROM readers WHERE Account = %s AND Password = %s"
@@ -289,7 +281,7 @@ def add_order(acc: str = Query(...), pwd: str = Query(...), order: OrderRequest 
         'Unpaid',           # PaymentStatus
         order.Note,         # Note
         order.Address,      # Address
-        order.ApplyBy,      # ApplyBy
+        None,      # ApplyBy
         order.DocID,        # DocID
         reader_id           # OrderID
     )

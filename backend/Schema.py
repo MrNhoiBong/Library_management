@@ -42,8 +42,6 @@ class OrderRequest(BaseModel):
     Address: str                # ✅ Địa chỉ nhận
     BorrowDay: int             # ✅ Số ngày mượn (CHECK > 0)
     Note: Optional[str] = None # ✅ Ghi chú (tùy chọn)
-    ApplyBy: str               # ✅ Mã thủ thư (phải tồn tại trong bảng librarians)
-
 
 class DeleteDocumentRequest(BaseModel):
     DocID: str

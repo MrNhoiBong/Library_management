@@ -14,6 +14,30 @@ connection = pymysql.connect(
         database='libmanagement',
     )
 
+import pymysql
+import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
+from Schema import *
+from fastapi import FastAPI, HTTPException, Query , Body, Request
+from typing import Optional
+
+app = FastAPI()
+
+# List of allowed origins
+origins = [
+"http://localhost",
+"http://localhost:6060",
+]
+
+# Adding CORS middleware to the FastAPI application
+app.add_middleware(
+CORSMiddleware,
+allow_origins=origins, # List of allowed origins
+allow_credentials=True, # Allow credentials (cookies, authorization headers, etc.)
+allow_methods=["*"], # Allow all HTTP methods
+allow_headers=["*"], # Allow all HTTP headers
+)
+
 # Api: get documents no auth
 @app.get("/api/get-documents/")
 def get_documents():

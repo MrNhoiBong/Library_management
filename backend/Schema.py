@@ -67,7 +67,7 @@ class DocumentUpdate(BaseModel):
     Author: str
     Genre: str
     Title: str
-    Link: str
+    Link: Optional[str] = None
     Publication_year: str  # YYYY-MM-DD
     Available: int
     Rank: int

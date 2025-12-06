@@ -18,4 +18,4 @@ npm install
 npm run dev
 ```
 
-Khi hoàn tất sẽ có thể truy cập giao diện ở 6464
+Khi hoàn tất sẽ có thể truy cập giao diện ở 6060
